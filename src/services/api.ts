@@ -1,0 +1,25 @@
+import axios from "axios";
+
+export const api = axios.create({
+  baseURL: "http://localhost:3001",
+});
+
+export const getBlogs = async () => {
+  const res = await api.get("/blogs");
+  return res.data;
+};
+
+export const getBlogById = async (id: string) => {
+  const res = await api.get(`/blogs/${id}`);
+  return res.data;
+};
+
+export const createBlog = async (data: any) => {
+  const res = await api.post("/blogs", data);
+  return res.data;
+};
+
+export const deleteBlog = async (id: string) => {
+  const res = await api.delete(`/blogs/${id}`);
+  return res.data;
+};

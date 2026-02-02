@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply text-gray-900 bg-[#fdfdfd];
+    transition: background-color 0.5s ease;
+  }
+
+  /* Ensure proper contrast in light mode */
+  :root {
+    --text-primary: #111827;
+    /* gray-900 - main text */
+    --text-secondary: #374151;
+    /* gray-700 - secondary text */
+    --text-muted: #6b7280;
+    /* gray-500 - muted text */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    /* gray-50 */
+    --border-color: #e5e7eb;
+    /* gray-200 */
+  }
+}
+
+@layer components {
+
+  /* Force navigation menu text to be visible in light mode */
+  nav button,
+  nav a {
+    color: #111827;
+    /* gray-900 */
+    font-weight: 500;
+  }
+
+  /* Keep dark mode styling */
+  .dark nav button,
+  .dark nav a {
+    color: #d1d5db;
+    /* gray-300 */
+  }
+
+  /* Ensure all headings are dark in light mode */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #111827;
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: #f9fafb;
+  }
+
+  /* Optimize button visibility */
+  button:not(.dark *) {
+    font-weight: 500;
+  }
+
+  /* Ensure category badges are visible */
+  .category-badge {
+    background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+    color: #1e40af !important;
+    font-weight: 600;
+  }
+
+  /* Optimize input fields for light mode */
+  input:not(.dark *),
+  textarea:not(.dark *) {
+    background-color: #ffffff;
+    border-color: #d1d5db;
+    color: #111827;
+  }
+
+  input:focus:not(.dark *),
+  textarea:focus:not(.dark *) {
+    border-color: #3b82f6;
+    outline: 2px solid #93c5fd;
+    outline-offset: 0;
+  }
+
+  input::placeholder:not(.dark *),
+  textarea::placeholder:not(.dark *) {
+    color: #9ca3af !important;
+    /* gray-400 */
+  }
+
+  /* Ensure search icon visibility */
+  .search-icon {
+    color: #6b7280;
+  }
+
+  /* Blog card optimizations */
+  .blog-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+  }
+
+  .blog-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-4px);
+  }
+
+  /* Pagination visibility */
+  .pagination-button {
+    color: #374151 !important;
+    border-color: #d1d5db;
+  }
+
+  .pagination-button:hover {
+    background-color: #f3f4f6;
+    color: #111827 !important;
+  }
+
+  .pagination-button.active {
+    background-color: #3b82f6;
+    color: #ffffff !important;
+  }
+
+  /* Ensure proper text contrast on colored backgrounds */
+  .bg-blue-600,
+  .bg-blue-700,
+  .bg-blue-800,
+  .bg-blue-900 {
+    color: #ffffff !important;
+  }
+
+  /* Loading and error states */
+  .loading-text,
+  .error-text {
+    color: #374151;
+    font-weight: 500;
+  }
+
+  /* Date badges and meta information */
+  .meta-info {
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  /* Ensure dropdown menus are visible */
+  .dropdown-menu {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@layer utilities {
+
+  /* Custom utility for ensuring text is always readable */
+  .text-readable {
+    color: #111827;
+  }
+
+  .text-readable-secondary {
+    color: #374151;
+  }
+
+  .text-readable-muted {
+    color: #6b7280;
+  }
+}
+/* Custom Search Input styles from user */
+.input-container {
+  position: relative;
+  margin: 0px;
+  width: 200px;
+}
+
+.input-field {
+  display: block;
+  width: 100%;
+  padding: 5px 0;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: none;
+  border-bottom: 1px solid #e5e7eb;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.input-label {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.input-highlight {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0;
+  background-color: #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus ~ .input-label,
+.input-field:not(:placeholder-shown) ~ .input-label {
+  top: -15px;
+  font-size: 8px;
+  color: #1a1a1a;
+}
+
+.input-field:focus ~ .input-highlight {
+  width: 100%;
+}
+
