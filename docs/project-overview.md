@@ -1,4 +1,4 @@
-﻿# FARE
+# FARE
 
 A premium, minimalist blog dashboard designed for finance professionals. Built with React 19 and Framer Motion for a fluid, high-end user experience.
 
