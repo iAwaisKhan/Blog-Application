@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useTheme } from "./theme-provider";
 
 type Blog = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   coverImage: string;
@@ -10,38 +12,59 @@ type Blog = {
 };
 
 export default function BlogCard({ blog }: { blog: Blog }) {
+  const { isNightMode } = useTheme();
+
   return (
-    <Link to={`/blog/${blog.id}`}>
-      <div className="bg-white dark:bg-gray-900 border border-transparent dark:border-gray-800 rounded-lg shadow hover:shadow-lg transition overflow-hidden">
-        <img
-          src={blog.coverImage}
-          alt={blog.title}
-          className="h-48 w-full object-cover"
-        />
+    <motion.div
+      whileHover={{ y: -12 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="relative"
+    >
+      <Link to={`/blog/${blog.id}`} className="group block">
+        <div className="space-y-6">
+          <motion.div 
+            layoutId={`blog-image-${blog.id}`}
+            className="relative aspect-[4/3] overflow-hidden rounded-sm bg-gray-100"
+          >
+            <motion.div
+              className="absolute inset-0 z-10 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+              initial={false}
+            />
+            <motion.img
+              src={blog.coverImage}
+              alt={blog.title}
+              className={`h-full w-full object-cover transition-all duration-1000 group-hover:scale-110 ${
+                isNightMode ? 'opacity-80' : 'grayscale group-hover:grayscale-0'
+              }`}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-end p-6 z-20">
+              <span className="text-white text-[10px] tracking-[0.4em] font-bold uppercase translate-y-4 group-hover:translate-y-0 transition-transform duration-700">Read Entry</span>
+            </div>
+          </motion.div>
 
-        <div className="p-4">
-          <p className="text-sm text-gray-500 dark:text-gray-400">{blog.date}</p>
+          <div className="space-y-3 px-1">
+            <div className="flex items-center gap-4">
+              <span className="text-editorial-cap text-blue-500">{blog.category[0]}</span>
+              <span className="text-editorial-cap opacity-40">{new Date(blog.date).toLocaleDateString()}</span>
+            </div>
 
-          <h2 className="text-lg font-semibold mt-1 dark:text-gray-100">
-            {blog.title}
-          </h2>
+            <motion.h3 
+              layoutId={`blog-title-${blog.id}`}
+              className={`text-4xl font-serif leading-tight group-hover:italic transition-all duration-700 ${
+                isNightMode ? 'text-white' : 'text-[#1a1a1a]'
+              }`}
+            >
+              {blog.title}
+            </motion.h3>
 
-          <p className="text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">
-            {blog.description}
-          </p>
-
-          <div className="flex gap-2 mt-3 flex-wrap">
-            {blog.category.map((cat) => (
-              <span
-                key={cat}
-                className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-1 rounded"
-              >
-                {cat}
-              </span>
-            ))}
+            <p className={`text-editorial-body line-clamp-2 opacity-60 transition-colors ${
+              isNightMode ? 'text-gray-400 group-hover:text-white' : 'text-gray-600 group-hover:text-black'
+            }`}>
+              {blog.description}
+            </p>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </motion.div>
   );
 }

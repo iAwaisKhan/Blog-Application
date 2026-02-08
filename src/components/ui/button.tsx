@@ -12,10 +12,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variants = {
       default: "bg-[#000842] text-white shadow hover:bg-opacity-90",
-      ghost: "hover:bg-gray-100 text-gray-900 font-medium",
-      outline: "border border-gray-300 bg-white shadow-sm hover:bg-gray-50 text-gray-900 font-medium",
-      secondary: "bg-gray-100 text-gray-900 shadow-sm hover:bg-gray-200 font-medium",
-      ghost_blue: "hover:bg-blue-50 text-blue-700 font-medium",
+      ghost: "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100 font-medium",
+      outline: "border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-900 text-gray-900 dark:text-gray-100 font-medium",
+      secondary: "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm hover:bg-gray-200 dark:hover:bg-gray-700 font-medium",
+      ghost_blue: "hover:bg-blue-50 dark:hover:bg-blue-900/20 text-blue-700 dark:text-blue-400 font-medium",
       link: "text-blue-600 underline-offset-4 hover:underline p-0 h-auto font-medium",
     }
 
