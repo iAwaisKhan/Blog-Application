@@ -19,6 +19,11 @@ export const createBlog = async (data: any) => {
   return res.data;
 };
 
+export const updateBlog = async ({ id, data }: { id: string; data: any }) => {
+  const res = await api.patch(`/blogs/${id}`, data);
+  return res.data;
+};
+
 export const deleteBlog = async (id: string) => {
   const res = await api.delete(`/blogs/${id}`);
   return res.data;
