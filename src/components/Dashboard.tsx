@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, TrendingUp, Sparkles } from "lucide-react";
 import { Reveal } from "./ui/reveal";
+import { FeatherPen } from "./ui/animated/FeatherPen";
 
 export default function Dashboard({
   onJournalClick,
@@ -20,6 +21,7 @@ export default function Dashboard({
     <div className={`w-full transition-colors duration-700 p-8 lg:p-12 pt-0 lg:pt-0 ${
       isNightMode ? 'bg-[#0a0a0a]' : 'bg-[#fdfdfd]'
     }`}>
+      <FeatherPen />
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Hero Section */}
         <section className="relative pt-12 pb-20 lg:pt-16 lg:pb-32 overflow-hidden">
